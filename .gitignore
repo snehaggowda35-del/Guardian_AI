@@ -1,0 +1,26 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Environment / secrets
+.env
+.env.*
+backend/.env
+backend/.env.*
+!.env.example
+!backend/.env.example
+!backend/.env.docker.example
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Dependencies / local files
+backend/.deps/
+
+# OS
+.DS_Store
+Thumbs.db

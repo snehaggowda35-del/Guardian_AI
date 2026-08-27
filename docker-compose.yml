@@ -1,0 +1,25 @@
+services:
+  api:
+    build: ./backend
+    env_file: ./backend/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: guardian
+      POSTGRES_USER: guardian
+      POSTGRES_PASSWORD: change-this-local-password
+    volumes:
+      - guardian_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U guardian -d guardian"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+volumes:
+  guardian_pg:

@@ -1,0 +1,1 @@
+let last='';function read(){const q=new URL(location.href).searchParams.get('q')?.trim();if(q&&q!==last){last=q;chrome.runtime.sendMessage({type:'guardian-event',source:'search',text:q})}}read();new MutationObserver(read).observe(document.documentElement,{subtree:true,childList:true});
